@@ -4,21 +4,23 @@ import { connect } from "react-redux";
 import { getProductByCategory } from "../actions/products";
 import ProductGrid from "../components/layouts/ProductGrid";
 import SectionHeader from "../components/layouts/SectionHeader";
+import LoadingBar from "../components/layouts/LoadingBar";
 
 const CategoryPage = ({
   categoryName,
   getProductByCategory,
   productByCategory,
+  loading,
 }) => {
   useEffect(() => {
-    console.log("categoryName", categoryName);
-    categoryName && getProductByCategory(categoryName);
-  });
+    getProductByCategory(categoryName);
+  }, [getProductByCategory]);
 
   return (
     <>
       <SectionHeader heading={categoryName} />
-      <ProductGrid products={productByCategory} />
+      {loading && <LoadingBar />}
+      {productByCategory && <ProductGrid products={productByCategory} />}
     </>
   );
 };
@@ -27,6 +29,7 @@ CategoryPage.propTypes = {
   getProductByCategory: PropTypes.func.isRequired,
   categoryName: PropTypes.string.isRequired,
   productByCategory: PropTypes.array,
+  loading: PropTypes.bool,
 };
 
 const mapStateToProps = (state) => ({

@@ -50,7 +50,7 @@ const ProductCard = ({ productDetails }) => {
 };
 
 ProductCard.propTypes = {
-  productDetails: PropTypes.array.isRequired,
+  productDetails: PropTypes.object.isRequired,
 };
 
 export default ProductCard;

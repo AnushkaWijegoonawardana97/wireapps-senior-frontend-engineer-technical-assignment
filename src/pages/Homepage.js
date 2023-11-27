@@ -6,12 +6,14 @@ import { Box } from "@mui/material";
 import CategoryCardLink from "../components/common/CategoryCardLink";
 import { connect } from "react-redux";
 import { getProductsList, getCategoryList } from "../actions/products";
+import LoadingBar from "../components/layouts/LoadingBar";
 
 const Homepage = ({
   getProductsList,
   categoryList,
   productList,
   getCategoryList,
+  loading,
 }) => {
   useEffect(() => {
     getCategoryList();
@@ -21,10 +23,13 @@ const Homepage = ({
   return (
     <>
       <SectionHeader heading={"Flash Sale"} />
+
+      {loading && <LoadingBar />}
       {productList && <ProductGrid products={productList} />}
 
       <SectionHeader heading={"Categories"} />
 
+      {loading && <LoadingBar />}
       {categoryList && (
         <Box
           rowGap={2}

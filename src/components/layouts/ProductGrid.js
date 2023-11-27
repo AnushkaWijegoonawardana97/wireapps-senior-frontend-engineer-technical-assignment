@@ -11,11 +11,13 @@ const ProductGrid = ({ products }) => {
       display='grid'
       gridTemplateColumns={{
         xs: "repeat(1, 1fr)",
-        sm: "repeat(4, 1fr)",
+        sm: "repeat(2, 1fr)",
+        md: "repeat(3, 1fr)",
+        lg: "repeat(4, 1fr)",
       }}
       sx={{ mb: 5 }}>
       {products.map((product) => (
-        <ProductCard key={product} productDetails={product} />
+        <ProductCard key={product?.title} productDetails={product} />
       ))}
     </Box>
   );
