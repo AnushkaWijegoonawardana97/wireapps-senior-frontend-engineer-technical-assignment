@@ -5,18 +5,23 @@ import ProductGrid from "../components/layouts/ProductGrid";
 import { Box } from "@mui/material";
 import CategoryCardLink from "../components/common/CategoryCardLink";
 import { connect } from "react-redux";
-import { getProductsList } from "../actions/products";
+import { getProductsList, getCategoryList } from "../actions/products";
 
-const Homepage = ({ getProductsList, categoryList, productList }) => {
+const Homepage = ({
+  getProductsList,
+  categoryList,
+  productList,
+  getCategoryList,
+}) => {
   useEffect(() => {
+    getCategoryList();
     getProductsList();
-  }, [getProductsList, productList]);
+  }, [getCategoryList, getProductsList]);
 
   return (
     <>
       <SectionHeader heading={"Flash Sale"} />
-
-      <ProductGrid />
+      {productList && <ProductGrid products={productList} />}
 
       <SectionHeader heading={"Categories"} />
 
@@ -30,8 +35,8 @@ const Homepage = ({ getProductsList, categoryList, productList }) => {
             sm: "repeat(2, 1fr)",
           }}
           sx={{ mb: 5 }}>
-          {categoryList.map((cat) => (
-            <CategoryCardLink key={cat} />
+          {categoryList.map((category) => (
+            <CategoryCardLink key={category} categoryDetails={category} />
           ))}
         </Box>
       )}
@@ -41,6 +46,7 @@ const Homepage = ({ getProductsList, categoryList, productList }) => {
 
 Homepage.propTypes = {
   getProductsList: PropTypes.func.isRequired,
+  getCategoryList: PropTypes.func.isRequired,
   loading: PropTypes.bool,
   categoryList: PropTypes.array,
   productList: PropTypes.array,
@@ -52,4 +58,6 @@ const mapStateToProps = (state) => ({
   productList: state.products.productList,
 });
 
-export default connect(mapStateToProps, { getProductsList })(Homepage);
+export default connect(mapStateToProps, { getProductsList, getCategoryList })(
+  Homepage
+);

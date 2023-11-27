@@ -10,6 +10,7 @@ export const getCategoryList = () => async (dispatch) => {
   const subStr = "clothing";
   try {
     const response = await axios.get(`${API_PATH}products/categories`, CONFIG);
+    console.log("getCategoryList", response);
 
     const categoryData = response.data.filter((str) => str.includes(subStr));
 

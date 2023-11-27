@@ -1,22 +1,27 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Link as RouterLink } from "react-router-dom";
 import { Card, CardActionArea, CardContent, Typography } from "@mui/material";
+import React from "react";
+import { Link as RouterLink } from "react-router-dom";
 
-const CategoryCardLink = (props) => {
+const CategoryCardLink = ({ categoryDetails }) => {
+  let bgColor = categoryDetails !== "men's clothing" ? "#FF5E84" : "#2BD9AF";
+
   return (
     <Card>
-      <CardActionArea component={RouterLink} to='/mens-clothing'>
+      <CardActionArea
+        component={RouterLink}
+        to={categoryDetails.replace(" ", "-").replace("'", "")}>
         <CardContent
           sx={{
             minHeight: "180px",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            backgroundColor: "#2BD9AF",
+            backgroundColor: bgColor,
           }}>
-          <Typography variant='h4' sx={{ color: "text.secondary" }}>
-            Category Name
+          <Typography
+            variant='h4'
+            sx={{ color: "text.secondary", textTransform: "capitalize" }}>
+            {categoryDetails}
           </Typography>
         </CardContent>
       </CardActionArea>

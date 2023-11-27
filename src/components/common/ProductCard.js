@@ -8,38 +8,49 @@ import {
   Typography,
 } from "@mui/material";
 
-const ProductCard = (props) => {
+const ProductCard = ({ productDetails }) => {
+  let bgColor =
+    productDetails?.category !== "men's clothing" ? "#FF5E84" : "#2BD9AF";
+
   return (
     <Card>
       <CardHeader
-        title='Shrimp and Chorizo Paella'
-        sx={{ textAlign: "center" }}
+        title={
+          productDetails?.title.length > 50
+            ? `${productDetails?.title.substring(0, 50)}...`
+            : productDetails?.title
+        }
+        sx={{ textAlign: "center", minHeight: "68px" }}
       />
       <CardMedia
         sx={{ p: 2, objectFit: "contain" }}
         component='img'
         height='160'
-        image='https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg'
-        alt='Paella dish'
+        image={productDetails?.image}
+        alt={productDetails?.title}
       />
       <CardContent
         sx={{
-          backgroundColor: "#FF5E84",
+          backgroundColor: bgColor,
           borderRadius: 2,
           textAlign: "center",
+          minHeight: "180px",
         }}>
         <Typography variant='body1' color='#0E42FD'>
-          109.95
+          Rs {productDetails?.price}
         </Typography>
         <Typography variant='caption' color='text.primary'>
-          Your perfect pack for everyday use and walks in the forest. Stash your
-          laptop (up to 15 inches) in the padded sleeve, your everyday
+          {productDetails?.description.length > 240
+            ? `${productDetails?.description.substring(0, 240)}...`
+            : productDetails?.description}
         </Typography>
       </CardContent>
     </Card>
   );
 };
 
-ProductCard.propTypes = {};
+ProductCard.propTypes = {
+  productDetails: PropTypes.array.isRequired,
+};
 
 export default ProductCard;

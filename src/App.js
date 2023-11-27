@@ -35,11 +35,11 @@ const App = (props) => {
             <Route path='/' element={<Homepage />} />
             <Route
               path='/mens-clothing'
-              element={<CategoryPage categoryName="Men's Clothing" />}
+              element={<CategoryPage categoryName="men's clothing" />}
             />
             <Route
               path='/womens-clothing'
-              element={<CategoryPage categoryName="Women's Clothing" />}
+              element={<CategoryPage categoryName="women's clothing" />}
             />
           </Routes>
         </Container>

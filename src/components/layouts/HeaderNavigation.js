@@ -1,14 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
 import {
   AppBar,
-  Box,
   Divider,
   Stack,
   Toolbar,
   Typography,
   styled,
 } from "@mui/material";
+import React from "react";
+import { Link } from "react-router-dom";
 import {
   APP_NAME,
   HEADER_DESKTOP,
@@ -42,9 +41,11 @@ const HeaderNavigation = (props) => {
           alignItems='center'
           justifyContent='center'
           sx={{ flexGrow: 1 }}>
-          <Typography variant='h2' sx={{ color: "text.primary" }}>
-            {APP_NAME}
-          </Typography>
+          <Link to={"/"}>
+            <Typography variant='h2' sx={{ color: "text.primary" }}>
+              {APP_NAME}
+            </Typography>
+          </Link>
         </Stack>
       </StyledToolbar>
       <Divider />
