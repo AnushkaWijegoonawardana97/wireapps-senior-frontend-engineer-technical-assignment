@@ -32,8 +32,6 @@ export const getProductsList = () => async (dispatch) => {
   try {
     const response = await axios.get(`${API_PATH}products?limit=4`, CONFIG);
 
-    console.log(response);
-
     dispatch({
       type: GET_PRODUCT_LIST,
       payload: response.data,
