@@ -1,10 +1,12 @@
+import { Button } from "@mui/material";
 import PropTypes from "prop-types";
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import { Link as RouterLink } from "react-router-dom";
 import { getProductByCategory } from "../actions/products";
+import LoadingBar from "../components/layouts/LoadingBar";
 import ProductGrid from "../components/layouts/ProductGrid";
 import SectionHeader from "../components/layouts/SectionHeader";
-import LoadingBar from "../components/layouts/LoadingBar";
 
 const CategoryPage = ({
   categoryName,
@@ -14,13 +16,27 @@ const CategoryPage = ({
 }) => {
   useEffect(() => {
     getProductByCategory(categoryName);
-  }, [getProductByCategory]);
+  }, [getProductByCategory, categoryName]);
 
   return (
     <>
       <SectionHeader heading={categoryName} />
+
       {loading && <LoadingBar />}
+
       {productByCategory && <ProductGrid products={productByCategory} />}
+
+      <Button
+        component={RouterLink}
+        to={"/"}
+        variant='contained'
+        sx={{
+          position: "fixed",
+          bottom: "1rem",
+          right: "2rem",
+        }}>
+        Back To Home
+      </Button>
     </>
   );
 };

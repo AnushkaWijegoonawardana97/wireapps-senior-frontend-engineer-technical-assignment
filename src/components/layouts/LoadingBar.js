@@ -1,15 +1,18 @@
-import React from "react";
-import PropTypes from "prop-types";
 import { Box, CircularProgress } from "@mui/material";
+import React from "react";
 
-const LoadingBar = (props) => {
+const LoadingBar = () => {
   return (
-    <Box sx={{ display: "flex", width: "100vw", height: "100vh" }}>
-      <CircularProgress />
+    <Box
+      sx={{
+        display: "flex",
+        width: "100%",
+        alignItems: "center",
+        justifyContent: "center",
+      }}>
+      <CircularProgress color='#0E0E0E' />
     </Box>
   );
 };
-
-LoadingBar.propTypes = {};
 
 export default LoadingBar;

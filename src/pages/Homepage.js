@@ -1,12 +1,12 @@
-import React, { useEffect } from "react";
-import PropTypes from "prop-types";
-import SectionHeader from "../components/layouts/SectionHeader";
-import ProductGrid from "../components/layouts/ProductGrid";
 import { Box } from "@mui/material";
-import CategoryCardLink from "../components/common/CategoryCardLink";
+import PropTypes from "prop-types";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { getProductsList, getCategoryList } from "../actions/products";
-import LoadingBar from "../components/layouts/LoadingBar";
+import { getCategoryList, getProductsList } from "../actions/products";
+import CategoryCardLink from "../components/common/CategoryCardLink";
+import LoadingBackDrop from "../components/layouts/LoadingBackDrop";
+import ProductGrid from "../components/layouts/ProductGrid";
+import SectionHeader from "../components/layouts/SectionHeader";
 
 const Homepage = ({
   getProductsList,
@@ -22,14 +22,13 @@ const Homepage = ({
 
   return (
     <>
+      {loading && <LoadingBackDrop loading={loading}/>}
       <SectionHeader heading={"Flash Sale"} />
 
-      {loading && <LoadingBar />}
       {productList && <ProductGrid products={productList} />}
 
       <SectionHeader heading={"Categories"} />
 
-      {loading && <LoadingBar />}
       {categoryList && (
         <Box
           rowGap={2}
